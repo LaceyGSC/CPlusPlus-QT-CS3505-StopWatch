@@ -3,12 +3,12 @@
 StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
 {
     timer.start(10);
-    time.stop();
-    time.clear();
+    timer.stop();
+    //timer.clear();
 }
 
-std::string StopWatchTimer::formatedNumbers(){
-}
+//std::string StopWatchTimer::formatedNumbers(){
+//}
 
 std::string StopWatchTimer::twoDigitNumber(int input){
     input=input%100;

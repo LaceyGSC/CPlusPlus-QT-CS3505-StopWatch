@@ -2,6 +2,8 @@
 #define STOPWATCHTIMER_H
 #include <QObject>
 #include <QTimer>
+#include <QTime>
+#include <string>
 
 
 class StopWatchTimer : public QObject
@@ -17,8 +19,7 @@ private:
     std::string twoDigitNumber(int);
 public:
     explicit StopWatchTimer(QObject *parent = 0);
-
-    string formatedNumbers();
+    std::string formatedNumbers;
 
 signals:
 
