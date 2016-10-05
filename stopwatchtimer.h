@@ -11,19 +11,20 @@ private:
     QTime time;
     QTimer timer;
     bool stopped;
-    bool cleared;
-    unsigned long long pausedAt;
     unsigned long long offset;
     std::string twoDigitNumber(int);
 public:
     explicit StopWatchTimer(QObject *parent = 0);
 
-    string formatedNumbers();
+    //returns a formatted string of numbers which can be placed in the textbox
+    std::string formatedNumbers();
 
 signals:
 
 public slots:
+    //contains logic to start and stop timer.
     void start_stop();
+    //clears the function
     void clear();
 };
 
