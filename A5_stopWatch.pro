@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    stopwatchtimer.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    stopwatchtimer.h
 
 FORMS    += mainwindow.ui
