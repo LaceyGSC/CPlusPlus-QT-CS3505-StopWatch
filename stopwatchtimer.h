@@ -19,10 +19,12 @@ private:
 public:
     explicit StopWatchTimer(QObject *parent = 0);
 
-    //returns a formatted string of numbers which can be placed in the textbox
-    std::string formatedNumbers();
+    std::string getHundred(int);
+    std::string getSecond(int);
+    std::string getMinute(int);
 
 signals:
+    void updatedClock();
 
 public slots:
     //contains logic to start and stop timer.
