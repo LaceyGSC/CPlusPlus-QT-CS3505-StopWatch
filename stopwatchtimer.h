@@ -10,17 +10,16 @@ class StopWatchTimer : public QObject
 private:
     QTime time;
     QTimer timer;
+    std::string twoDigitNumber(int);
 public:
     explicit StopWatchTimer(QObject *parent = 0);
-
 
     string formatedNumbers();
 
 signals:
 
 public slots:
-    void start();
-    void stop();
+    void start_stop();
     void clear();
 };
 
