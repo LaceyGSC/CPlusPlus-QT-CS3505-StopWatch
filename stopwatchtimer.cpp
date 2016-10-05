@@ -7,7 +7,8 @@ StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
     //timer.clear();
 }
 
-//std::string StopWatchTimer::formatedNumbers(){
+//std::string StopWatchTimer::formatedNumbers()
+//{
 //}
 
 std::string StopWatchTimer::twoDigitNumber(int input){

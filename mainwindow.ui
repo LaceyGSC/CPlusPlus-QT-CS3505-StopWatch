@@ -40,23 +40,56 @@
      <string>clear</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_hundredths">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>50</y>
-      <width>281</width>
-      <height>91</height>
+      <y>60</y>
+      <width>271</width>
+      <height>101</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>68</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>00:00:00</string>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLCDNumber" name="lcdNumber_3">
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdNumber_2"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdNumber"/>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -65,7 +98,7 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
