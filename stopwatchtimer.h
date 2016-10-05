@@ -10,6 +10,10 @@ class StopWatchTimer : public QObject
 private:
     QTime time;
     QTimer timer;
+    bool stopped;
+    bool cleared;
+    unsigned long long pausedAt;
+    unsigned long long offset;
     std::string twoDigitNumber(int);
 public:
     explicit StopWatchTimer(QObject *parent = 0);
