@@ -22,6 +22,9 @@ public:
 
     //returns a formatted string of numbers which can be placed in the textbox
     std::string formatedNumbers();
+    std::string getHundred(int temp);
+    std::string getSecond(int temp);
+    std::string getMinute(int temp);
 
 signals:
 

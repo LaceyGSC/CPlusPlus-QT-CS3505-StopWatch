@@ -4,8 +4,9 @@
 #include <QMainWindow>
 #include "stopwatchtimer.h"
 
-namespace Ui {
-class MainWindow;
+namespace Ui
+{
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -14,6 +15,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void zeroOut();
     ~MainWindow();
 
 private slots:
