@@ -7,6 +7,18 @@ StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
 }
 
 std::string StopWatchTimer::formatedNumbers(){
+    std::string output;
+    int temp = time.elapsed+offset;
+    int minutes = temp/60000;
+    int seconds = (temp/1000)%60;
+    int hundredths = (temp/10)%100;
+
+    output = twoDigitNumber(minutes);
+    output += ':';
+    output += twoDigitNumber(seconds);
+    output += ':';
+    output += twoDigitNumber(hundredths);
+    return output;
 }
 
 std::string StopWatchTimer::twoDigitNumber(int input){
