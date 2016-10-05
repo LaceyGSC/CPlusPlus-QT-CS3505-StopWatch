@@ -6,28 +6,52 @@ StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
     time.start();
 }
 
-std::string StopWatchTimer::formatedNumbers(){
+std::string StopWatchTimer::formatedNumbers()
+{
     std::string output;
     int temp = time.elapsed()+offset;
-    int minutes = temp/60000;
-    int seconds = (temp/1000)%60;
-    int hundredths = (temp/10)%100;
 
-    output = twoDigitNumber(minutes);
-    output += ':';
-    output += twoDigitNumber(seconds);
-    output += ':';
-    output += twoDigitNumber(hundredths);
     return output;
 }
 
+std::string StopWatchTimer::getHundred(int temp)
+{
+    std::string output;
+    int hundredths = (temp/10)%100;
+    output += twoDigitNumber(hundredths);
+    return output;
 
-std::string StopWatchTimer::twoDigitNumber(int input){
+}
+
+std::string StopWatchTimer::getSecond(int temp)
+{
+    std::string output;
+    int seconds = (temp/1000)%60;
+    output += twoDigitNumber(seconds);
+    return output;
+
+}
+
+std::string StopWatchTimer::getMinute(int temp)
+{
+    std::string output;
+    int minutes = temp/60000;
+    output = twoDigitNumber(minutes);
+    return output;
+
+}
+
+
+std::string StopWatchTimer::twoDigitNumber(int input)
+{
     input=input%100;
     std::string output;
-    if(input<10){
+    if(input<10)
+    {
         output+="0";
-    } else{
+    }
+    else
+    {
         output+=input/10 + 48; // add first ascii charactor
         input = input % 10;
     }
@@ -36,7 +60,8 @@ std::string StopWatchTimer::twoDigitNumber(int input){
 }
 
 //starts or stops the stopwatch, keeps track of offset time
-void StopWatchTimer::start_stop(){
+void StopWatchTimer::start_stop()
+{
     if(stopped){
         time.start();
     } else {
@@ -46,7 +71,8 @@ void StopWatchTimer::start_stop(){
 }
 
 //clears stopwatched
-void StopWatchTimer::clear(){
+void StopWatchTimer::clear()
+{
    stopped = true;
    offset = 0;
    time.start();
