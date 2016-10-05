@@ -6,10 +6,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    timer = new StopWatchTimer;
+    connect(ui->startStop_button,SLOT(click()),timer,SIGNAL(start_stop()));
+    connect(ui->clear_button,SLOT(click()),timer,SIGNAL(clear()));
 }
 
 MainWindow::~MainWindow()
 {
+    delete timer;
     delete ui;
 }
 

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "stopwatchtimer.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +20,7 @@ private slots:
     void on_pushButton_clicked();
 
 private:
+    StopWatchTimer* timer;
     Ui::MainWindow *ui;
 };
 

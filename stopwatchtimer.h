@@ -2,6 +2,7 @@
 #define STOPWATCHTIMER_H
 #include <QObject>
 #include <QTimer>
+#include <QTime>
 
 
 class StopWatchTimer : public QObject
