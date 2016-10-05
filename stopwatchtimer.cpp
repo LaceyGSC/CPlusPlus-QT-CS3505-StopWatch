@@ -7,10 +7,10 @@ StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
     time.clear();
 }
 
-string StopWatchTimer::formatedNumbers(){
+std::string StopWatchTimer::formatedNumbers(){
 }
 
-std::string twoDigitNumber(int input){
+std::string StopWatchTimer::twoDigitNumber(int input){
     input=input%100;
     std::string output;
     if(input<10){
