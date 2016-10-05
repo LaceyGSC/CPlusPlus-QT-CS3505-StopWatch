@@ -12,6 +12,8 @@ private:
     QTimer timer;
     bool stopped;
     unsigned long long offset;
+
+    //formats ints into two digit strings
     std::string twoDigitNumber(int);
 public:
     explicit StopWatchTimer(QObject *parent = 0);
