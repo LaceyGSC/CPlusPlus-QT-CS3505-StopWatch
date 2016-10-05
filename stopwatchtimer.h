@@ -13,15 +13,15 @@ private:
 public:
     explicit StopWatchTimer(QObject *parent = 0);
 
-    void start();
-    void stop();
-    void clear();
 
-    string formatNumbers(int);
+    string formatedNumbers();
 
 signals:
 
 public slots:
+    void start();
+    void stop();
+    void clear();
 };
 
 #endif // STOPWATCHTIMER_H
