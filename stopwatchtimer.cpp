@@ -21,6 +21,7 @@ std::string StopWatchTimer::formatedNumbers(){
     return output;
 }
 
+
 std::string StopWatchTimer::twoDigitNumber(int input){
     input=input%100;
     std::string output;
