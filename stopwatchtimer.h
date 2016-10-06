@@ -33,6 +33,7 @@ signals:
     void updateHundred(QString output);
     void updateMinute(QString output);
     void updateSecond(QString output);
+    void updateButton(QString buttonName);
 
 
 public slots:

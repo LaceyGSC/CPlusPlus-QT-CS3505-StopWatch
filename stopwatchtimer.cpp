@@ -84,6 +84,7 @@ void StopWatchTimer::updateClock()
 
 }
 
+
 //starts or stops the stopwatch, keeps track of offset time
 void StopWatchTimer::start_stop()
 {
@@ -91,11 +92,13 @@ void StopWatchTimer::start_stop()
     {
         time.start();
         stopped = false;
+        emit updateButton("Pause");
     }
     else
     {
-      stopped = true;
-      offset += time.restart();
+        stopped = true;
+        offset += time.restart();
+        emit updateButton("Restart");
     }
 }
 
@@ -110,4 +113,6 @@ void StopWatchTimer::resetClock()
    getSecond(0);
 
    time.restart();
+
+   emit updateButton("Start");
 }
