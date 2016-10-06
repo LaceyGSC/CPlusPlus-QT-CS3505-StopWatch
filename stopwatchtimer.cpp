@@ -2,6 +2,7 @@
 
 StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
 {
+    timer = new QTimer;
     connect(timer,SIGNAL(timeout()),this, SLOT(timerUp()));
     timer->start(10);
     time.start();
