@@ -1,6 +1,7 @@
 #ifndef STOPWATCHTIMER_H
 #define STOPWATCHTIMER_H
 #include <QObject>
+#include <QString>
 #include <QTimer>
 #include <QTime>
 #include <string>
@@ -16,23 +17,28 @@ private:
     unsigned long long offset;
 
     //formats ints into two digit strings
-    std::string twoDigitNumber(int);
+    QString twoDigitNumber(int);
 public:
     explicit StopWatchTimer(QObject *parent = 0);
 
     //returns a formatted string of numbers which can be placed in the textbox
     std::string formatedNumbers();
-    std::string getHundred(int temp);
-    std::string getSecond(int temp);
-    std::string getMinute(int temp);
+    QString getHundred(int temp);
+    QString getSecond(int temp);
+    QString getMinute(int temp);
 
 signals:
+    void updateHundred(QString output);
+    void updateMinute(QString output);
+    void updateSecond(QString output);
 
 public slots:
     //contains logic to start and stop timer.
     void start_stop();
     //clears the function
     void clear();
+
+    void updateClock();
 };
 
 #endif // STOPWATCHTIMER_H
