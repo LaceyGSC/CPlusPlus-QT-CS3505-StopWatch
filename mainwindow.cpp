@@ -17,7 +17,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SLOT(upDateTime()),timer,SIGNAL(updatedClock()));
 }
 
-void MainWindow::upDateTime(){}
+void MainWindow::upDateTime(){
+    //throw new std::string("Timer_Works!");
+    TimeSet time = timer->getTime();
+    ui->hundredLCD->display(QString::fromStdString(time.hndr));
+    ui->secondLCD->display(QString::fromStdString(time.sec));
+    ui->minuteLCD->display(QString::fromStdString(time.min));
+    ui->hundredLCD->show();
+
+}
 
 MainWindow::~MainWindow()
 {
