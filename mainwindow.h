@@ -17,7 +17,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     void zeroOut();
     ~MainWindow();
-
+int test = 0;
 private slots:
     void on_pushButton_clicked();
     void upDateTime();

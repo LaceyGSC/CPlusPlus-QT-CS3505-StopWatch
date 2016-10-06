@@ -5,6 +5,11 @@
 #include <QTime>
 #include <string>
 
+struct TimeSet{
+    std::string min;
+    std::string sec;
+    std::string hndr;
+};
 
 class StopWatchTimer : public QObject
 {
@@ -20,6 +25,7 @@ private:
 public:
     explicit StopWatchTimer(QObject *parent = 0);
 
+    TimeSet getTime();
     std::string getHundred(int);
     std::string getSecond(int);
     std::string getMinute(int);
@@ -38,5 +44,7 @@ public slots:
 private slots:
     void timerUp();
 };
+
+
 
 #endif // STOPWATCHTIMER_H

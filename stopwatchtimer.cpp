@@ -1,4 +1,7 @@
 #include "stopwatchtimer.h"
+#include<QMessageBox>
+#include<QtCore>
+#include<QtGui>
 
 StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
 {
@@ -32,6 +35,21 @@ std::string StopWatchTimer::getMinute(int temp)
 
 }
 
+TimeSet StopWatchTimer::getTime(){
+
+    int temp = offset + time.elapsed();
+
+    int minutes = temp/60000;
+    int seconds = (temp/1000)%60;
+    int hundredths = (temp/10)%100;
+
+    TimeSet output;
+    output.min = twoDigitNumber(minutes);
+    output.sec = twoDigitNumber(seconds);
+    output.hndr = twoDigitNumber(hundredths);
+
+    return output;
+}
 
 std::string StopWatchTimer::twoDigitNumber(int input)
 {
@@ -62,6 +80,7 @@ void StopWatchTimer::start_stop()
 }
 
 void StopWatchTimer::timerUp(){
+    //throw new std::string("Timer_Works!");
     emit updatedClock();
 }
 
