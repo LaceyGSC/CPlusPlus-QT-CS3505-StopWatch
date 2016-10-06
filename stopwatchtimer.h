@@ -22,7 +22,7 @@ private:
 
 
 public:
-    explicit StopWatchTimer(QObject *parent = 0);
+    explicit StopWatchTimer();
 
     //returns a formatted string of numbers which can be placed in the textbox
     std::string formatedNumbers();
@@ -35,12 +35,14 @@ signals:
     void updateMinute(QString output);
     void updateSecond(QString output);
 
+    //clears the function
+   // void resetClock();
+
 public slots:
     //contains logic to start and stop timer.
     void start_stop();
-    //clears the function
-    void clear();
     void updateClock();
+    void resetClock();
 };
 
 #endif // STOPWATCHTIMER_H

@@ -1,12 +1,13 @@
 #include "stopwatchtimer.h"
-#include <iostream>
+#include <QDebug>
 
 //Constructs the QTimer timer and QTime time
-StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
+StopWatchTimer::StopWatchTimer()
 {
+    //Constructs the time, starts it now for testing
+    //Needs to move to button when working
     timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateClock()));
-
+    QTimer::connect(timer, SIGNAL(timeout()), this, SLOT(updateClock()));
     timer->start(100);
 
     offset = 0;
@@ -74,13 +75,11 @@ QString StopWatchTimer::twoDigitNumber(int input)
 void StopWatchTimer::updateClock()
 {
 
-    int temp = time.elapsed()+offset;
+   int temp = time.elapsed()+offset;
 
-    std::cout << temp << "\n";
-
-//    getHundred(temp);
-//    getMinute(temp);
-//    getSecond(temp);
+   getHundred(temp);
+   getMinute(temp);
+   getSecond(temp);
 
 }
 
@@ -99,9 +98,17 @@ void StopWatchTimer::start_stop()
 }
 
 //clears stopwatched
-void StopWatchTimer::clear()
+void StopWatchTimer::resetClock()
 {
    stopped = true;
    offset = 0;
+
+   timer->stop();
+
+   getHundred(0);
+   getMinute(0);
+   getSecond(0);
+
+
    time.start();
 }
