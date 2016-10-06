@@ -4,24 +4,28 @@
 //Constructs the QTimer timer and QTime time
 StopWatchTimer::StopWatchTimer()
 {
-    //Constructs the time, starts it now for testing
-    //Needs to move to button when working
+    //Constructs the timer and starts it
     timer = new QTimer(this);
     QTimer::connect(timer, SIGNAL(timeout()), this, SLOT(updateClock()));
     timer->start(10);
 
+    //sets start time to 0
     offset = 0;
     stopped = true;
     time.start();
 }
 
+StopWatchTimer::~StopWatchTimer()
+{
+    delete timer;
+}
 
 //Returns the hundredths of a second of elapsed time as two digit string
 QString StopWatchTimer::getHundred(int temp)
 {
-    QString output;
     int hundredths = (temp/10)%100;
-    output += twoDigitNumber(hundredths);
+    QString output = twoDigitNumber(hundredths);
+
     emit updateHundred(output);
     return output;
 }
@@ -29,9 +33,9 @@ QString StopWatchTimer::getHundred(int temp)
 //Returns the seconds of elapsed time as two digit string
 QString StopWatchTimer::getSecond(int temp)
 {
-    QString output;
     int seconds = (temp/1000)%60;
-    output += twoDigitNumber(seconds);
+    QString output = twoDigitNumber(seconds);
+
     emit updateSecond(output);
     return output;
 }
@@ -39,14 +43,11 @@ QString StopWatchTimer::getSecond(int temp)
 //Returns the minutes of elapsed time as two digit string
 QString StopWatchTimer::getMinute(int temp)
 {
-    QString output;
     int minutes = temp/60000;
-    output = twoDigitNumber(minutes);
+    QString output = twoDigitNumber(minutes);
 
     emit updateMinute(output);
-
     return output;
-
 }
 
 //Takes in the values and formats with leading zero if needed
@@ -54,6 +55,7 @@ QString StopWatchTimer::twoDigitNumber(int input)
 {
     input=input%100;
     QString output;
+
     if(input<10)
     {
         output+="0";

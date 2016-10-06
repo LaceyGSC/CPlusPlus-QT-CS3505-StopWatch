@@ -12,12 +12,13 @@ class StopWatchTimer : public QObject
 {
     Q_OBJECT
 private:
+    ~StopWatchTimer();
     QTime time;
     QTimer* timer;
     bool stopped;
     unsigned long long offset;
 
-    //formats ints into two digit strings
+    //formats ints into two digit QStrings
     QString twoDigitNumber(int);
 
 
@@ -35,10 +36,9 @@ signals:
 
 
 public slots:
-    //contains logic to start and stop timer.
-    void start_stop();
-    void updateClock();
-    void resetClock();
+    void start_stop();  //contains logic to start and stop timer.
+    void resetClock();  //contains logic to reset the timer.
+    void updateClock(); //Emits the times to the UI for updating
 };
 
 

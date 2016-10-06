@@ -11,9 +11,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->secondLCD->display("00");
     ui->minuteLCD->display("00");
 
+    //connect buttons to the StopWatchTimer
     connect(ui->clear_button,SIGNAL(clicked(bool)),&timer,SLOT(resetClock()));//   connect(&timer,SIGNAL(resetClock()),ui->clear_button,SLOT(click()));
     connect(ui->startStop_button,SIGNAL(clicked(bool)),&timer,SLOT(start_stop()));
 
+    //connects the StopWatchTimer to the display
     connect(&timer,SIGNAL(updateHundred(QString)),ui->hundredLCD,SLOT(display(QString)));
     connect(&timer,SIGNAL(updateSecond(QString)),ui->secondLCD,SLOT(display(QString)));
     connect(&timer,SIGNAL(updateMinute(QString)),ui->minuteLCD,SLOT(display(QString)));
@@ -22,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete ui;
 }
 
 void MainWindow::on_pushButton_clicked()
