@@ -21,7 +21,6 @@ std::string StopWatchTimer::getSecond(int temp)
     int seconds = (temp/1000)%60;
     output += twoDigitNumber(seconds);
     return output;
-
 }
 
 std::string StopWatchTimer::getMinute(int temp)
@@ -34,12 +33,16 @@ std::string StopWatchTimer::getMinute(int temp)
 }
 
 
-std::string StopWatchTimer::twoDigitNumber(int input){
+std::string StopWatchTimer::twoDigitNumber(int input)
+{
     input=input%100;
     std::string output;
-    if(input<10){
+    if(input<10)
+    {
         output+="0";
-    } else{
+    }
+    else
+    {
         output+=input/10 + 48; // add first ascii charactor
         input = input % 10;
     }
@@ -48,7 +51,8 @@ std::string StopWatchTimer::twoDigitNumber(int input){
 }
 
 //starts or stops the stopwatch, keeps track of offset time
-void StopWatchTimer::start_stop(){
+void StopWatchTimer::start_stop()
+{
     if(stopped){
         time.start();
     } else {

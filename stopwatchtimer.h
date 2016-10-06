@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QTime>
+#include <string>
 
 
 class StopWatchTimer : public QObject
@@ -22,6 +23,8 @@ public:
     std::string getHundred(int);
     std::string getSecond(int);
     std::string getMinute(int);
+    //returns a formatted string of numbers which can be placed in the textbox
+    std::string formatedNumbers();
 
 signals:
     void updatedClock();
