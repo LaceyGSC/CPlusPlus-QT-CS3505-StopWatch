@@ -2,14 +2,16 @@
 
 StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
 {
-    timer.start(10);
+    connect(timer,SIGNAL(timeout()),this, SLOT(timerUp()));
+    timer->start(10);
     time.start();
 }
 
 std::string StopWatchTimer::getHundred(int temp)
 {
+    std::string output;
     int hundredths = (temp/10)%100;
-    std::string output = twoDigitNumber(hundredths);
+    output = twoDigitNumber(hundredths);
     return output;
 }
 
@@ -22,13 +24,13 @@ std::string StopWatchTimer::getSecond(int temp)
 
 std::string StopWatchTimer::getMinute(int temp)
 {
+    std::string output;
     int minutes = temp/60000;
-    std::string output = twoDigitNumber(minutes);
+    output = twoDigitNumber(minutes);
     return output;
 
 }
 
-void StopWatchTimer::updatedClock(){}
 
 std::string StopWatchTimer::twoDigitNumber(int input)
 {
@@ -56,6 +58,10 @@ void StopWatchTimer::start_stop()
       stopped = true;
       offset += time.restart();
     }
+}
+
+void StopWatchTimer::timerUp(){
+    emit updatedClock();
 }
 
 //clears stopwatched

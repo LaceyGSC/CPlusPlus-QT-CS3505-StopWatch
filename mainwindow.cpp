@@ -3,7 +3,6 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -15,7 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->startStop_button,SLOT(click()),timer,SIGNAL(start_stop()));
     connect(ui->clear_button,SLOT(click()),timer,SIGNAL(clear()));
+    connect(this,SLOT(upDateTime()),timer,SIGNAL(updatedClock()));
 }
+
+void MainWindow::upDateTime(){}
 
 MainWindow::~MainWindow()
 {

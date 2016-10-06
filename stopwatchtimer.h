@@ -3,15 +3,15 @@
 #include <QObject>
 #include <QTimer>
 #include <QTime>
+#include <string>
 
 
 class StopWatchTimer : public QObject
 {
     Q_OBJECT
-
 private:
     QTime time;
-    QTimer timer;
+    QTimer* timer;
     bool stopped;
     unsigned long long offset;
 
@@ -23,7 +23,6 @@ public:
     std::string getHundred(int);
     std::string getSecond(int);
     std::string getMinute(int);
-
     //returns a formatted string of numbers which can be placed in the textbox
     std::string formatedNumbers();
 
@@ -35,6 +34,9 @@ public slots:
     void start_stop();
     //clears the function
     void clear();
+
+private slots:
+    void timerUp();
 };
 
 #endif // STOPWATCHTIMER_H
