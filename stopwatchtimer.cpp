@@ -8,30 +8,27 @@ StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
 
 std::string StopWatchTimer::getHundred(int temp)
 {
-    std::string output;
     int hundredths = (temp/10)%100;
-    output += twoDigitNumber(hundredths);
+    std::string output = twoDigitNumber(hundredths);
     return output;
-
 }
 
 std::string StopWatchTimer::getSecond(int temp)
 {
-    std::string output;
     int seconds = (temp/1000)%60;
-    output += twoDigitNumber(seconds);
+    std::string output = twoDigitNumber(seconds);
     return output;
 }
 
 std::string StopWatchTimer::getMinute(int temp)
 {
-    std::string output;
     int minutes = temp/60000;
-    output = twoDigitNumber(minutes);
+    std::string output = twoDigitNumber(minutes);
     return output;
 
 }
 
+void StopWatchTimer::updatedClock(){}
 
 std::string StopWatchTimer::twoDigitNumber(int input)
 {
