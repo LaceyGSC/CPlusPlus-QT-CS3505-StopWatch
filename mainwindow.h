@@ -23,7 +23,7 @@ private slots:
     void upDateTime();
 
 private:
-    StopWatchTimer* timer;
+    StopWatchTimer* timer = new StopWatchTimer(this);
     Ui::MainWindow *ui;
 };
 

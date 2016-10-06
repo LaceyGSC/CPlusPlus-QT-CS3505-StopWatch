@@ -6,7 +6,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    timer = new StopWatchTimer;
 
     ui->hundredLCD->display("00");
     ui->secondLCD->display("00");

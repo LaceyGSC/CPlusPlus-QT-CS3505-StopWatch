@@ -16,7 +16,7 @@ class StopWatchTimer : public QObject
     Q_OBJECT
 private:
     QTime time;
-    QTimer* timer;
+    QTimer* timer = new QTimer;
     bool stopped;
     unsigned long long offset;
 

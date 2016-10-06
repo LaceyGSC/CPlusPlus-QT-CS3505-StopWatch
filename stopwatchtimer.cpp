@@ -5,9 +5,8 @@
 
 StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
 {
-    timer = new QTimer;
     connect(timer,SIGNAL(timeout()),this, SLOT(timerUp()));
-    timer->start(10);
+    timer->start(1000);
     time.start();
 }
 
@@ -81,7 +80,10 @@ void StopWatchTimer::start_stop()
 
 void StopWatchTimer::timerUp(){
     //throw new std::string("Timer_Works!");
-    emit updatedClock();
+    //int x = 1;
+    //if(time.elapsed()>10000){
+        emit updatedClock();
+    //}
 }
 
 //clears stopwatched
