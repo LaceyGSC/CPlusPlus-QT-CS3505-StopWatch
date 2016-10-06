@@ -4,9 +4,10 @@
 //Constructs the QTimer timer and QTime time
 StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
 {
-    connect(&timer, SIGNAL(timeout()), this, SLOT(updateClock()));
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateClock()));
 
-    timer.start(100);
+    timer->start(100);
 
     offset = 0;
 

@@ -1,6 +1,7 @@
 #ifndef STOPWATCHTIMER_H
 #define STOPWATCHTIMER_H
 #include <QObject>
+#include <QTimerEvent>
 #include <QString>
 #include <QTimer>
 #include <QTime>
@@ -12,12 +13,14 @@ class StopWatchTimer : public QObject
     Q_OBJECT
 private:
     QTime time;
-    QTimer timer;
+    QTimer* timer;
     bool stopped;
     unsigned long long offset;
 
     //formats ints into two digit strings
     QString twoDigitNumber(int);
+
+
 public:
     explicit StopWatchTimer(QObject *parent = 0);
 
@@ -37,7 +40,6 @@ public slots:
     void start_stop();
     //clears the function
     void clear();
-
     void updateClock();
 };
 
