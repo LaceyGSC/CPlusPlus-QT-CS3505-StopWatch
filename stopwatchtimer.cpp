@@ -11,7 +11,7 @@ StopWatchTimer::StopWatchTimer()
     timer->start(10);
 
     offset = 0;
-
+    stopped = true;
     time.start();
 }
 
@@ -103,11 +103,9 @@ void StopWatchTimer::resetClock()
    stopped = true;
    offset = 0;
 
-   timer->stop();
-
    getHundred(0);
    getMinute(0);
    getSecond(0);
 
-   time.start();
+   time.restart();
 }
