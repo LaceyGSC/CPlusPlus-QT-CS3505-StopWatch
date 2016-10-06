@@ -12,7 +12,6 @@ class StopWatchTimer : public QObject
 {
     Q_OBJECT
 private:
-    ~StopWatchTimer();
     QTime time;
     QTimer* timer;
     bool stopped;
@@ -24,6 +23,7 @@ private:
 
 public:
     explicit StopWatchTimer();
+    ~StopWatchTimer();
 
     QString getHundred(int temp);
     QString getSecond(int temp);
