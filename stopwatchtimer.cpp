@@ -1,59 +1,59 @@
 #include "stopwatchtimer.h"
-#include<QMessageBox>
-#include<QtCore>
-#include<QtGui>
+#include <QDebug>
 
-StopWatchTimer::StopWatchTimer(QObject *parent) : QObject(parent)
+//Constructs the QTimer timer and QTime time
+StopWatchTimer::StopWatchTimer()
 {
-    connect(timer,SIGNAL(timeout()),this, SLOT(timerUp()));
-    timer->start(1000);
+    //Constructs the time, starts it now for testing
+    //Needs to move to button when working
+    timer = new QTimer(this);
+    QTimer::connect(timer, SIGNAL(timeout()), this, SLOT(updateClock()));
+    timer->start(10);
+
+    offset = 0;
+
     time.start();
 }
 
-std::string StopWatchTimer::getHundred(int temp)
+
+//Returns the hundredths of a second of elapsed time as two digit string
+QString StopWatchTimer::getHundred(int temp)
 {
-    std::string output;
+    QString output;
     int hundredths = (temp/10)%100;
-    output = twoDigitNumber(hundredths);
+    output += twoDigitNumber(hundredths);
+    emit updateHundred(output);
     return output;
 }
 
-std::string StopWatchTimer::getSecond(int temp)
+//Returns the seconds of elapsed time as two digit string
+QString StopWatchTimer::getSecond(int temp)
 {
+    QString output;
     int seconds = (temp/1000)%60;
-    std::string output = twoDigitNumber(seconds);
+    output += twoDigitNumber(seconds);
+    emit updateSecond(output);
     return output;
 }
 
-std::string StopWatchTimer::getMinute(int temp)
+//Returns the minutes of elapsed time as two digit string
+QString StopWatchTimer::getMinute(int temp)
 {
-    std::string output;
+    QString output;
     int minutes = temp/60000;
     output = twoDigitNumber(minutes);
+
+    emit updateMinute(output);
+
     return output;
 
 }
 
-TimeSet StopWatchTimer::getTime(){
-
-    int temp = offset + time.elapsed();
-
-    int minutes = temp/60000;
-    int seconds = (temp/1000)%60;
-    int hundredths = (temp/10)%100;
-
-    TimeSet output;
-    output.min = twoDigitNumber(minutes);
-    output.sec = twoDigitNumber(seconds);
-    output.hndr = twoDigitNumber(hundredths);
-
-    return output;
-}
-
-std::string StopWatchTimer::twoDigitNumber(int input)
+//Takes in the values and formats with leading zero if needed
+QString StopWatchTimer::twoDigitNumber(int input)
 {
     input=input%100;
-    std::string output;
+    QString output;
     if(input<10)
     {
         output+="0";
@@ -64,31 +64,50 @@ std::string StopWatchTimer::twoDigitNumber(int input)
         input = input % 10;
     }
     output+=input+48; //add ascii charactor
+
     return output;
+}
+
+//Emits the times to the UI for updating
+void StopWatchTimer::updateClock()
+{
+
+    if(!stopped){
+        int temp = time.elapsed()+offset;
+
+        getHundred(temp);
+        getMinute(temp);
+        getSecond(temp);
+    }
+
 }
 
 //starts or stops the stopwatch, keeps track of offset time
 void StopWatchTimer::start_stop()
 {
-    if(stopped){
+    if(stopped)
+    {
         time.start();
-    } else {
+        stopped = false;
+    }
+    else
+    {
       stopped = true;
       offset += time.restart();
     }
 }
 
-void StopWatchTimer::timerUp(){
-    //throw new std::string("Timer_Works!");
-    //int x = 1;
-    //if(time.elapsed()>10000){
-        emit updatedClock();
-    //}
-}
-
 //clears stopwatched
-void StopWatchTimer::clear(){
+void StopWatchTimer::resetClock()
+{
    stopped = true;
    offset = 0;
+
+   timer->stop();
+
+   getHundred(0);
+   getMinute(0);
+   getSecond(0);
+
    time.start();
 }

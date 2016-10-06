@@ -11,29 +11,22 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->secondLCD->display("00");
     ui->minuteLCD->display("00");
 
-    connect(ui->startStop_button,SLOT(click()),timer,SIGNAL(start_stop()));
-    connect(ui->clear_button,SLOT(click()),timer,SIGNAL(clear()));
-    connect(this,SLOT(upDateTime()),timer,SIGNAL(updatedClock()));
-}
+    connect(ui->clear_button,SIGNAL(clicked(bool)),&timer,SLOT(resetClock()));//   connect(&timer,SIGNAL(resetClock()),ui->clear_button,SLOT(click()));
+    connect(ui->startStop_button,SIGNAL(clicked(bool)),&timer,SLOT(start_stop()));
 
-void MainWindow::upDateTime(){
-    //throw new std::string("Timer_Works!");
-    TimeSet time = timer->getTime();
-    ui->hundredLCD->display(QString::fromStdString(time.hndr));
-    ui->secondLCD->display(QString::fromStdString(time.sec));
-    ui->minuteLCD->display(QString::fromStdString(time.min));
-    ui->hundredLCD->show();
+    connect(&timer,SIGNAL(updateHundred(QString)),ui->hundredLCD,SLOT(display(QString)));
+    connect(&timer,SIGNAL(updateSecond(QString)),ui->secondLCD,SLOT(display(QString)));
+    connect(&timer,SIGNAL(updateMinute(QString)),ui->minuteLCD,SLOT(display(QString)));
 
 }
 
 MainWindow::~MainWindow()
 {
-    delete timer;
-    delete ui;
 }
 
 void MainWindow::on_pushButton_clicked()
 {
 
 }
+
 

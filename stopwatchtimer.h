@@ -1,48 +1,44 @@
 #ifndef STOPWATCHTIMER_H
 #define STOPWATCHTIMER_H
 #include <QObject>
+#include <QTimerEvent>
+#include <QString>
 #include <QTimer>
 #include <QTime>
 #include <string>
 
-struct TimeSet{
-    std::string min;
-    std::string sec;
-    std::string hndr;
-};
 
 class StopWatchTimer : public QObject
 {
     Q_OBJECT
 private:
     QTime time;
-    QTimer* timer = new QTimer;
+    QTimer* timer;
     bool stopped;
     unsigned long long offset;
 
     //formats ints into two digit strings
-    std::string twoDigitNumber(int);
-public:
-    explicit StopWatchTimer(QObject *parent = 0);
+    QString twoDigitNumber(int);
 
-    TimeSet getTime();
-    std::string getHundred(int);
-    std::string getSecond(int);
-    std::string getMinute(int);
-    //returns a formatted string of numbers which can be placed in the textbox
-    std::string formatedNumbers();
+
+public:
+    explicit StopWatchTimer();
+
+    QString getHundred(int temp);
+    QString getSecond(int temp);
+    QString getMinute(int temp);
 
 signals:
-    void updatedClock();
+    void updateHundred(QString output);
+    void updateMinute(QString output);
+    void updateSecond(QString output);
+
 
 public slots:
     //contains logic to start and stop timer.
     void start_stop();
-    //clears the function
-    void clear();
-
-private slots:
-    void timerUp();
+    void updateClock();
+    void resetClock();
 };
 
 
